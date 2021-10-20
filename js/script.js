@@ -679,7 +679,7 @@ let sliderT = new Swiper('.slider-t', {
     },*/
 
     // автовысота (почти бесполезна)
-    autoHeight: true,
+//     autoHeight: true,
 
     // скорость прокрутки(по умолчанию 300)
     speed: 800,
