@@ -3017,6 +3017,12 @@ input._error {
   width: 450px;
 }
 
+@media (min-width: 992px) {
+  .intro-index {
+    min-height: 100vh;
+  }
+}
+
 @media screen and (max-width: 992px) {
   ._title {
     background-image: url(../img/back_tablet.webp);
