@@ -571,280 +571,296 @@ function uploadFile(file) {
  let slidersRange = document.querySelectorAll('input[type=range]');
  //  console.log(ranges);
  if (slidersRange) {
-   for (let i = 0; i < slidersRange.length; i++) {
-     let sliderRange = slidersRange[i];
-     sliderRange.addEventListener('change', function () {
-       document.querySelector('.upload__reset').disabled = false;
-     });
-   }
+     for (let i = 0; i < slidersRange.length; i++) {
+         let sliderRange = slidersRange[i];
+         sliderRange.addEventListener('change', function () {
+             document.querySelector('.upload__reset').disabled = false;
+         });
+     }
  }
+
+ let inputFile = document.querySelector('#formImage');
+ let uploadImage = document.querySelector('.upload__image');
+ if (inputFile && uploadImage) {
+     inputFile.addEventListener('focus', () => {
+         uploadImage.classList.add('_focus');
+     });
+     inputFile.addEventListener('blur', () => {
+         uploadImage.classList.remove('_focus');
+     });
+ }
+
 
  //  --------------------------------
  document.addEventListener('click', documentActions);
 
  // делегирование события клик
  function documentActions(e) {
-   const targetElement = e.target;
+     const targetElement = e.target;
 
-   //обработка клика на стрелку меню
-   if (targetElement.classList.contains('menu__arrow')) {
-     targetElement.closest('.menu__item').classList.toggle('_hover');
-   }
+     //обработка клика на стрелку меню
+     if (targetElement.classList.contains('menu__arrow')) {
+         targetElement.closest('.menu__item').classList.toggle('_hover');
+     }
 
-   if (!targetElement.closest('.menu__item') && document.querySelectorAll('.menu__item._hover').length > 0) {
-     _removeClasses(document.querySelectorAll('.menu__item._hover'), "_hover");
+     if (!targetElement.closest('.menu__item') && document.querySelectorAll('.menu__item._hover').length > 0) {
+         _removeClasses(document.querySelectorAll('.menu__item._hover'), "_hover");
 
-   }
-   // можно добавлять события клика
-   // клик на картинке для загрузки фото
-   if (targetElement.closest('.upload__image img')) {
-     document.querySelector('#formImage').click();
-   }
+     }
+     // можно добавлять события клика
+     // клик на картинке для загрузки фото
+     if (targetElement.closest('.upload__image img')) {
+         document.querySelector('#formImage').click();
+     }
 
-   //  отключаем кнопку ресет
-   if (targetElement.classList.contains('upload__reset')) {
-     setTimeout(()=>targetElement.disabled=true, 10);
-   }
+     //  отключаем кнопку ресет
+     if (targetElement.classList.contains('upload__reset')) {
+         setTimeout(() => targetElement.disabled = true, 10);
+     }
  }
-
 //Инициализируем Swiper
 
-let sliderT = new Swiper('.slider-t', {
-
-    /* */
-    // стрелки
-    // в html могут быть добавлены где угодно
-    navigation: {
-        // можно указать свои классы, для которых уже есть css
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
+if (window.Swiper) {
 
 
-    /* */
-    // Навигация
-    // Буллеты, текущее положение, прогрессбар
-    pagination: {
-        el: '.slider-t__pagination',
+    let sliderT = new Swiper('.slider-t', {
 
-        // тип пагинации "bullets", "fraction", "progressbar" or "custom"
-        /** */
-        // Буллеты
-        type: 'bullets',
-        // если не включено, не кликабельно
-        clickable: true,
+        /* */
+        // стрелки
+        // в html могут быть добавлены где угодно
+        navigation: {
+            // можно указать свои классы, для которых уже есть css
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
 
-    },
 
-    // количество слайдов для показа (можно указывать нецелые числа)
-    // или 'auto' (включить стили в css)
-    slidesPerView: 1,
+        /* */
+        // Навигация
+        // Буллеты, текущее положение, прогрессбар
+        pagination: {
+            el: '.slider-t__pagination',
 
-    // отключение функционала
-    // если слайдов меньше чем нужно
-    watchOverflow: true,
+            // тип пагинации "bullets", "fraction", "progressbar" or "custom"
+            /** */
+            // Буллеты
+            type: 'bullets',
+            // если не включено, не кликабельно
+            clickable: true,
 
-    // количество пролистываемых слайдов
-    slidesPerGroup: 1,
+        },
 
-    // активный слайд по центру
-    centeredSlides: true,
+        // количество слайдов для показа (можно указывать нецелые числа)
+        // или 'auto' (включить стили в css)
+        slidesPerView: 1,
 
-    // стартовый слайд
-    initialSlide: 0,
+        // отключение функционала
+        // если слайдов меньше чем нужно
+        watchOverflow: true,
 
-    // мультирядность
-    slidesPerColumn: 1,
+        // количество пролистываемых слайдов
+        slidesPerGroup: 1,
 
-    // Бесконечный слайдер
-    // не работает со скролом, его надо отключать
-    // не работает с мультирядностью (значение должно стоять не больше 1)
-    loop: true,
+        // активный слайд по центру
+        centeredSlides: true,
 
-    // колучество дублирующих сладов(такое же как значение slidesPerView)
-    loopedSlides: 0,
+        // стартовый слайд
+        initialSlide: 0,
 
-    // свободный режим
-    // перемещаем слайды без фиксированной позиции,  скролится колесом мыши
-    freeMode: false,
-    /* 
-    // Автопрокрутка
-    autoplay:{
-        // пауза между прокруткой
-        delay: 1000,
-        // закончить на последнем слайде
-        // stopOnLastSlide: true,
-        // отключить после ручного переключения
-        disableOnInteraction: false
-    },*/
+        // мультирядность
+        slidesPerColumn: 1,
 
-    // автовысота (почти бесполезна)
-//     autoHeight: true,
+        // Бесконечный слайдер
+        // не работает со скролом, его надо отключать
+        // не работает с мультирядностью (значение должно стоять не больше 1)
+        loop: true,
 
-    // скорость прокрутки(по умолчанию 300)
-    speed: 800,
+        // колучество дублирующих сладов(такое же как значение slidesPerView)
+        loopedSlides: 0,
 
-    // вертикальный слайдер (заменить на 'vertical')
-    // direction: 'horizontal',
+        // свободный режим
+        // перемещаем слайды без фиксированной позиции,  скролится колесом мыши
+        freeMode: false,
+        /* 
+        // Автопрокрутка
+        autoplay:{
+            // пауза между прокруткой
+            delay: 1000,
+            // закончить на последнем слайде
+            // stopOnLastSlide: true,
+            // отключить после ручного переключения
+            disableOnInteraction: false
+        },*/
 
-    /**/
-    // Обновить свайпер (например когда он изначально скрыт)
-    // при изменении элементов слайдера
-    observer: true,
+        // автовысота (почти бесполезна)
+        autoHeight: true,
 
-    // при изменении родитеьских элементов слайдера
-    observeParents: true,
+        // скорость прокрутки(по умолчанию 300)
+        speed: 800,
 
-    // при изменении дочерних элементов слайда
-    observeSlideChildren: true,
+        // вертикальный слайдер (заменить на 'vertical')
+        // direction: 'horizontal',
 
-    /* 
-    // доступность
-    a11y: {
-        // включить/выключить
-        enabled: true,
-        // сообщения
-        prevSlideMessage: 'Previous slide',
-        nextSlideMessage: 'Next slide',
-        firstSlideMessage: 'This is the first slide',
-        lastSlideMessage: 'This is the last slide',
-        paginationBulletMessage: 'Go to slide {{index}}',
-        // notificationClass: 'swiper-notification',
-        // containerMessage: '',
-        // containerRoleDescriptionMessage: '',
-        // itemRoleDescriptionMessage: '',
-    }*/
-});
+        /**/
+        // Обновить свайпер (например когда он изначально скрыт)
+        // при изменении элементов слайдера
+        observer: true,
 
-//Инициализируем Swiper
+        // при изменении родитеьских элементов слайдера
+        observeParents: true,
 
-let sliderTariffs= new Swiper('.slider-tarifs', {
+        // при изменении дочерних элементов слайда
+        observeSlideChildren: true,
 
-    /* */
-    // Навигация
-    // Буллеты, текущее положение, прогрессбар
-    pagination: {
-        el: '.slider-tarifs__pagination',
+        /* 
+        // доступность
+        a11y: {
+            // включить/выключить
+            enabled: true,
+            // сообщения
+            prevSlideMessage: 'Previous slide',
+            nextSlideMessage: 'Next slide',
+            firstSlideMessage: 'This is the first slide',
+            lastSlideMessage: 'This is the last slide',
+            paginationBulletMessage: 'Go to slide {{index}}',
+            // notificationClass: 'swiper-notification',
+            // containerMessage: '',
+            // containerRoleDescriptionMessage: '',
+            // itemRoleDescriptionMessage: '',
+        }*/
+    });
 
-        // тип пагинации "bullets", "fraction", "progressbar" or "custom"
-        /** */
-        // Буллеты
-        type: 'bullets',
-        // если не включено, не кликабельно
-        clickable: true,
+    //Инициализируем Swiper
 
-    },
+    let sliderTariffs = new Swiper('.slider-tarifs', {
 
-    // количество слайдов для показа (можно указывать нецелые числа)
-    // или 'auto' (включить стили в css)
-    slidesPerView: 1,
+        /* */
+        // Навигация
+        // Буллеты, текущее положение, прогрессбар
+        pagination: {
+            el: '.slider-tarifs__pagination',
 
-    // отключение функционала
-    // если слайдов меньше чем нужно
-    watchOverflow: true,
+            // тип пагинации "bullets", "fraction", "progressbar" or "custom"
+            /** */
+            // Буллеты
+            type: 'bullets',
+            // если не включено, не кликабельно
+            clickable: true,
 
-    // количество пролистываемых слайдов
-    slidesPerGroup: 1,
+        },
 
-    // активный слайд по центру
-    centeredSlides: true,
+        // количество слайдов для показа (можно указывать нецелые числа)
+        // или 'auto' (включить стили в css)
+        slidesPerView: 1,
 
-    // стартовый слайд
-    initialSlide: 0,
+        // отключение функционала
+        // если слайдов меньше чем нужно
+        watchOverflow: true,
 
-    // мультирядность
-    slidesPerColumn: 1,
+        // количество пролистываемых слайдов
+        slidesPerGroup: 1,
 
-    // Бесконечный слайдер
-    // не работает со скролом, его надо отключать
-    // не работает с мультирядностью (значение должно стоять не больше 1)
-    loop: true,
+        // активный слайд по центру
+        centeredSlides: true,
 
-    // колучество дублирующих сладов(такое же как значение slidesPerView)
-    loopedSlides: 0,
+        // стартовый слайд
+        initialSlide: 0,
 
-    // свободный режим
-    // перемещаем слайды без фиксированной позиции,  скролится колесом мыши
-    freeMode: false,
+        // мультирядность
+        slidesPerColumn: 1,
 
-    /* 
-    // Автопрокрутка
-    autoplay:{
-        // пауза между прокруткой
-        delay: 1000,
-        // закончить на последнем слайде
-        stopOnLastSlide: true,
-        // отключить после ручного переключения
-        disableOnInteraction: false
-    },*/
+        // Бесконечный слайдер
+        // не работает со скролом, его надо отключать
+        // не работает с мультирядностью (значение должно стоять не больше 1)
+        loop: true,
 
-    // скорость прокрутки(по умолчанию 300)
-    speed: 800,
+        // колучество дублирующих сладов(такое же как значение slidesPerView)
+        loopedSlides: 0,
 
-    // вертикальный слайдер (заменить на 'vertical')
-    // direction: 'horizontal',
+        // свободный режим
+        // перемещаем слайды без фиксированной позиции,  скролится колесом мыши
+        freeMode: false,
 
-    /**/
-    // Обновить свайпер (например когда он изначально скрыт)
-    // при изменении элементов слайдера
-    observer: true,
+        /* 
+        // Автопрокрутка
+        autoplay:{
+            // пауза между прокруткой
+            delay: 1000,
+            // закончить на последнем слайде
+            stopOnLastSlide: true,
+            // отключить после ручного переключения
+            disableOnInteraction: false
+        },*/
 
-    // при изменении родитеьских элементов слайдера
-    observeParents: true,
+        // скорость прокрутки(по умолчанию 300)
+        speed: 800,
 
-    // при изменении дочерних элементов слайда
-    observeSlideChildren: true,
+        // вертикальный слайдер (заменить на 'vertical')
+        // direction: 'horizontal',
 
-    /*
-    // доступность
-    a11y: {
-        // включить/выключить
-        enabled: true,
-        // сообщения
-        prevSlideMessage: 'Previous slide',
-        nextSlideMessage: 'Next slide',
-        firstSlideMessage: 'This is the first slide',
-        lastSlideMessage: 'This is the last slide',
-        paginationBulletMessage: 'Go to slide {{index}}',
-        // notificationClass: 'swiper-notification',
-        // containerMessage: '',
-        // containerRoleDescriptionMessage: '',
-        // itemRoleDescriptionMessage: '',
-    }, */
-      /* 
+        /**/
+        // Обновить свайпер (например когда он изначально скрыт)
+        // при изменении элементов слайдера
+        observer: true,
+
+        // при изменении родитеьских элементов слайдера
+        observeParents: true,
+
+        // при изменении дочерних элементов слайда
+        observeSlideChildren: true,
+
+        /*
+        // доступность
+        a11y: {
+            // включить/выключить
+            enabled: true,
+            // сообщения
+            prevSlideMessage: 'Previous slide',
+            nextSlideMessage: 'Next slide',
+            firstSlideMessage: 'This is the first slide',
+            lastSlideMessage: 'This is the last slide',
+            paginationBulletMessage: 'Go to slide {{index}}',
+            // notificationClass: 'swiper-notification',
+            // containerMessage: '',
+            // containerRoleDescriptionMessage: '',
+            // itemRoleDescriptionMessage: '',
+        }, */
+        /* 
     // брейкпоинты (адаптив)
     // ширина экрана*/
- 
-});
 
-
-// можно использовать функции
-// например для включение/отключения автопрокрутки при наведении
-
-/* */
-function sliderAutoplayStop(sliderName,sliderBlock){
-    let sb = document.querySelector(sliderBlock);
-    sb.addEventListener("mouseenter", function(e){
-        sliderName.autoplay.stop();
     });
-    sb.addEventListener("mouseleave",function(e){
-        sliderName.autoplay.start();
-    });
+
+
+    // можно использовать функции
+    // например для включение/отключения автопрокрутки при наведении
+
+    /* */
+    function sliderAutoplayStop(sliderName, sliderBlock) {
+        let sb = document.querySelector(sliderBlock);
+        sb.addEventListener("mouseenter", function (e) {
+            sliderName.autoplay.stop();
+        });
+        sb.addEventListener("mouseleave", function (e) {
+            sliderName.autoplay.start();
+        });
+    }
+
+
+    function sliderAutoplayStart(sliderName, sliderBlock) {
+        let sb = document.querySelector(sliderBlock);
+        sb.addEventListener("mouseenter", function (e) {
+            sliderName.params.autoplay.disableOnInteraction = false;
+            sliderName.params.autoplay.delay = 500;
+            sliderName.autoplay.start();
+        });
+        sb.addEventListener("mouseleave", function (e) {
+            sliderName.autoplay.stop();
+        });
+    }
+
+    // sliderAutoplayStop(sliderTariffs, '.slider-t');
+    // sliderAutoplayStart(mySlider, '.sliderClass');
+
 }
-
-
-function sliderAutoplayStart(sliderName,sliderBlock){
-    let sb = document.querySelector(sliderBlock);
-    sb.addEventListener("mouseenter", function(e){
-        sliderName.params.autoplay.disableOnInteraction = false;
-        sliderName.params.autoplay.delay = 500;
-        sliderName.autoplay.start();
-    });
-    sb.addEventListener("mouseleave",function(e){
-        sliderName.autoplay.stop();
-    });
-}
-
-// sliderAutoplayStop(sliderTariffs, '.slider-t');
-// sliderAutoplayStart(mySlider, '.sliderClass');
 });
