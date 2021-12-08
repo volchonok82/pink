@@ -1,19 +1,58 @@
-@@include('./html/head.html',{
-'lang':'ru',
-'meta_desc': 'галерея фотографий, загрузка фотографий',
-'title': 'Фотографии'
-})
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- не забыть отключить -->
+    <meta name="robots" content="none" />
+     <!-- описание страницы -->
+     <meta name="Description" content="галерея фотографий, загрузка фотографий"/>
+    <title>Фотографии</title>
+    <link rel="preload" as="image" href="img/back_mobile.webp">
+    <link rel="preload" as="image" href="img/iphone_hand_mobile.webp">
+    <link rel="preload" as="image" href="img/logotype_white_mobile_svg@2x.png">
+    <link rel="preload" as="font" href="fonts/OpenSans-Regular.woff" crossorigin>
+    <link rel="preload" as="font" href="fonts/OpenSans-Bold.woff" crossorigin>
+    <link rel="preload" as="font" href="fonts/OpenSans-Light.woff" crossorigin>
+    <link rel="preload" as="font" href="fonts/icons.woff" crossorigin>
+    <!-- <link rel="stylesheet" href="./css/style.css"> -->
+    <link rel="stylesheet" href="./css/style.min.css">
+
+</head>
 
 
 <body class="photo">
-    <!-- @@include('./html/_debug.html',{
-       'name':'value',
-       }) -->
+    
     <div class="_body-wrapper">
-        @@include('./html/header.html',{
-        'class':'photo__header',
-        'photo-active':'_active',
-        })
+        <header class="header photo__header">
+   <div class="header__wrapper wrapper">
+      <div class="header__body">
+         <!-- лого -->
+         <a href="index.html" class="header__logo">
+            <span class="visually-hidden">логотип</span>
+         </a>
+         <!--меню -->
+         <div class="header__menu menu">
+
+            <!-- оболочка меню -->
+            <nav class="menu__body">
+               <ul class="menu__list">
+                  <!-- прокрутка к разделу data-goto, если надо -->
+                  <li><a href="index.html" class="menu__link @@index-active">Главная</a></li>
+                  <li><a href="photo.html" class="menu__link _active">Фотографии</a></li>
+                  <li><a href="competition.html" class="menu__link @@competition-active">Конкурс</a></li>
+                  <li><a href="#" class="menu__link">HTML Academy</a></li>
+               </ul>
+            </nav>
+         </div>
+         <!-- иконка бургера -->
+         <div class="menu__icon icon-menu">
+            <span></span>
+         </div>
+      </div>
+   </div>
+</header>
 
         <div class="photo__title _title">
             <h1>Фотографии <br> пользователей</h1>
@@ -347,12 +386,29 @@
             </div>
         </section>
 
-        @@include('./html/footer.html',{
-        'class':'photo__footer',
-        })
+        <footer class="footer photo__footer">
+    <div class="footer__wrapper wrapper">
+        <div class="footer__body">
+            <a href="#" class="footer__logo"><span class="visually-hidden">Pink</span> </a>
+            <ul class="footer__socials">
+                <li><a href="#" class="footer__link _icon-twitter"><span class="visually-hidden">twitter link</span> </a>
+                </li>
+                <li><a href="#" class="footer__link _icon-fb"><span class="visually-hidden">facebook link</span> </a></li>
+                <li><a href="#" class="footer__link _icon-youtube"><span class="visually-hidden">youtube link</span> </a>
+                </li>
+            </ul>
+            <div class="footer__copy">
+                <span>Разработано</span>
+                <a href="#"><span class="visually-hidden">htmlacademy site</span></a>
+            </div>
+        </div>
+    </div>
+</footer>
 
     </div>
-    @@include('./html/js.html',{})
+    
+<script src="./js/script.min.js"></script>
+<!-- <script src="./js/script.js"></script> -->
 </body>
 
 </html>
